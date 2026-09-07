@@ -7,6 +7,10 @@ const {
     logout
 } = require("./controllers/authentication");
 
+const {
+    validateRegistration
+} = require("./validators/authentication");
+
 const groupRoutes = require("./routes/groups");
 
 const app = express();
@@ -26,7 +30,12 @@ app.use(
 );
 
 // Authentication routes
-app.post("/api/auth/register", register);
+app.post(
+    "/api/auth/register",
+    validateRegistration,
+    register
+);
+
 app.post("/api/auth/login", login);
 app.post("/api/auth/logout", logout);
 
