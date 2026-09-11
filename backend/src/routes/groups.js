@@ -22,6 +22,11 @@ const {
 } = require("../controllers/balances");
 
 const {
+    getSuggestedSettlements,
+    recordSettlement
+} = require("../controllers/settlements");
+
+const {
     requireAuthentication,
     checkGroupMembership
 } = require("../controllers/authorization");
@@ -87,6 +92,20 @@ router.get(
     requireAuthentication,
     checkGroupMembership,
     getBalances
+);
+
+router.get(
+    "/:groupId/settlements",
+    requireAuthentication,
+    checkGroupMembership,
+    getSuggestedSettlements
+);
+
+router.post(
+    "/:groupId/settlements",
+    requireAuthentication,
+    checkGroupMembership,
+    recordSettlement
 );
 
 module.exports = router;
