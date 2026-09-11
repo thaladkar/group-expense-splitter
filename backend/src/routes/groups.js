@@ -18,27 +18,28 @@ const {
 } = require("../controllers/expenses");
 
 const {
+    getBalances
+} = require("../controllers/balances");
+
+const {
     requireAuthentication,
     checkGroupMembership
 } = require("../controllers/authorization");
 
 const router = express.Router();
 
-// Create a new group
 router.post(
     "/",
     requireAuthentication,
     createNewGroup
 );
 
-// Get groups of logged-in user
 router.get(
     "/",
     requireAuthentication,
     getMyGroups
 );
 
-// Get one group
 router.get(
     "/:groupId",
     requireAuthentication,
@@ -46,7 +47,6 @@ router.get(
     getGroup
 );
 
-// Add a member
 router.post(
     "/:groupId/members",
     requireAuthentication,
@@ -54,7 +54,6 @@ router.post(
     addGroupMember
 );
 
-// Get group members
 router.get(
     "/:groupId/members",
     requireAuthentication,
@@ -62,7 +61,6 @@ router.get(
     getMembers
 );
 
-// Remove a member
 router.delete(
     "/:groupId/members/:userId",
     requireAuthentication,
@@ -70,7 +68,6 @@ router.delete(
     removeGroupMember
 );
 
-// Add an expense
 router.post(
     "/:groupId/expenses",
     requireAuthentication,
@@ -78,12 +75,18 @@ router.post(
     addExpense
 );
 
-// Get group expenses
 router.get(
     "/:groupId/expenses",
     requireAuthentication,
     checkGroupMembership,
     getExpenses
+);
+
+router.get(
+    "/:groupId/balances",
+    requireAuthentication,
+    checkGroupMembership,
+    getBalances
 );
 
 module.exports = router;

@@ -56,10 +56,15 @@ app.get("/", (req, res) => {
 
 const PORT = 3000;
 
-const server = app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// Start the server only when this file is run directly.
+if (require.main === module) {
+    const server = app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
 
-server.on("error", (error) => {
-    console.error("Server error:", error);
-});
+    server.on("error", (error) => {
+        console.error("Server error:", error);
+    });
+}
+
+module.exports = app;
