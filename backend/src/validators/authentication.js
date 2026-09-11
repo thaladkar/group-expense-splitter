@@ -28,6 +28,31 @@ function validateRegistration(req, res, next) {
     next();
 }
 
+function validateLogin(req, res, next) {
+    const errors = {};
+
+    const { email, password } = req.body;
+
+    if (!email || email.trim() === "") {
+        errors.email = "Email is required";
+    } else if (!email.includes("@")) {
+        errors.email = "Enter a valid email address";
+    }
+
+    if (!password || password.trim() === "") {
+        errors.password = "Password is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json({
+            errors: errors
+        });
+    }
+
+    next();
+}
+
 module.exports = {
-    validateRegistration
+    validateRegistration,
+    validateLogin
 };

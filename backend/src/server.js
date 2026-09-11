@@ -8,7 +8,8 @@ const {
 } = require("./controllers/authentication");
 
 const {
-    validateRegistration
+    validateRegistration,
+    validateLogin
 } = require("./validators/authentication");
 
 const groupRoutes = require("./routes/groups");
@@ -36,7 +37,12 @@ app.post(
     register
 );
 
-app.post("/api/auth/login", login);
+app.post(
+    "/api/auth/login",
+    validateLogin,
+    login
+);
+
 app.post("/api/auth/logout", logout);
 
 // Group routes

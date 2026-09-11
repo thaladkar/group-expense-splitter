@@ -4,7 +4,7 @@ const {
     createExpenseSplit,
     getSplitsByExpenseId,
     deleteSplitsByExpenseId
-} = require("../queries/expensesplits");
+} = require("../queries/expenseSplits");
 
 const {
     createExpense,
