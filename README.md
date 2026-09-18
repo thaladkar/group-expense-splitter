@@ -110,8 +110,8 @@ The backend uses Vitest and Supertest for automated testing.
 Current test result:
 
 ```text
-Test Files  12 passed (12)
-Tests       45 passed (45)
+Test Files  15 passed (15)
+Tests       69 passed (69)
 ```
 
 To run the tests:
