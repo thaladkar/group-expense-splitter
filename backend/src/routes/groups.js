@@ -14,7 +14,9 @@ const {
 
 const {
     addExpense,
-    getExpenses
+    getExpenses,
+    editExpense,
+    removeExpense
 } = require("../controllers/expenses");
 
 const {
@@ -85,6 +87,20 @@ router.get(
     requireAuthentication,
     checkGroupMembership,
     getExpenses
+);
+
+router.put(
+    "/:groupId/expenses/:expenseId",
+    requireAuthentication,
+    checkGroupMembership,
+    editExpense
+);
+
+router.delete(
+    "/:groupId/expenses/:expenseId",
+    requireAuthentication,
+    checkGroupMembership,
+    removeExpense
 );
 
 router.get(
