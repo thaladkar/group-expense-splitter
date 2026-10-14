@@ -1,10 +1,10 @@
 # Group Expense Splitter & Settlement Tracker
 
-A web application for splitting shared expenses between group members and tracking balances and settlements.
+A backend application for splitting shared expenses between group members and tracking balances and settlements. A React frontend is planned for a later stage.
 
 ## Project Status
 
-**Phase 3 - The Splitting Engine**
+**Current implementation: Phase 3 - The Splitting Engine**
 
 Completed so far:
 
@@ -29,24 +29,27 @@ Completed so far:
 - Reproducible seed and test fixture data
 - Automated API and query tests
 
-Current automated test result:
+Latest automated test result:
 
 ```text
 Test Files  17 passed (17)
 Tests       81 passed (81)
 ```
 
+The frontend has not been implemented yet. Development so far has focused on the backend API and its automated tests.
+
 ## Tech Stack
 
-- Frontend: React + Vite
-- Backend: Node.js + Express
-- Database: MySQL
-- Database Driver: mysql2
-- Database Migrations: Knex
-- Authentication: express-session + bcrypt
-- Testing: Vitest + Supertest + React Testing Library
-- Deployment: Railway
-- Version Control: Git + GitHub
+- **Frontend:** React + Vite (planned, not implemented)
+- **Backend:** Node.js + Express
+- **Database:** MySQL
+- **Database Driver:** mysql2
+- **Database Migrations:** Knex
+- **Authentication:** express-session + bcrypt
+- **Testing:** Vitest + Supertest
+- **Frontend Testing:** React Testing Library (planned for frontend development)
+- **Deployment:** Railway (planned)
+- **Version Control:** Git + GitHub
 
 ## Features
 
@@ -91,6 +94,8 @@ group-expense-splitter/
 └── README.md
 ```
 
+The structure above reflects the current repository. The frontend directory will be added when frontend development begins.
+
 ## Database
 
 The application uses MySQL with Knex migrations.
@@ -120,13 +125,14 @@ Session cookies use:
 - `sameSite`
 - Session expiry
 
+The session secret is read from the `SESSION_SECRET` environment variable rather than being hardcoded in the server code.
+
 Protected routes require the user to be logged in.
 
 Group routes also check that the logged-in user is a member of the requested group.
 
-Unauthenticated requests return `401`.
-
-Authenticated users attempting to access groups they are not members of return `403`.
+- Unauthenticated requests return `401`.
+- Authenticated users attempting to access groups they are not members of return `403`.
 
 ## Splitting Engine
 
@@ -243,6 +249,8 @@ Sample data can be loaded using:
 npx knex seed:run
 ```
 
+Run this command from inside the `backend` folder.
+
 The seed files create:
 
 - Sample users
@@ -289,13 +297,11 @@ Test Files  17 passed (17)
 Tests       81 passed (81)
 ```
 
-To run the tests:
+To run the tests, open a terminal in the `backend` folder and run:
 
 ```bash
 npm test -- --run
 ```
-
-Run the command from inside the `backend` folder.
 
 ## Documentation
 
@@ -316,6 +322,14 @@ The current implementation covers the main requirements of:
 
 Exercise 5 from Phase 2 is still pending until the supplied buggy function is provided.
 
+Phase 4 requirements will be reviewed against the existing settlement functionality before additional implementation work begins.
+
+## Frontend
+
+The planned frontend will use React and Vite.
+
+Frontend development has not started yet. The current repository contains the backend implementation and project documentation.
+
 ## Deployment
 
-Deployment to Railway is planned for a later phase.
+Deployment to Railway is planned for a later phase. The application has not yet been documented as deployed.
