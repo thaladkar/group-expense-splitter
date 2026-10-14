@@ -1,3 +1,7 @@
+require("dotenv").config({
+    path: require("path").resolve(__dirname, "../.env")
+});
+
 const express = require("express");
 const session = require("express-session");
 
@@ -16,11 +20,19 @@ const groupRoutes = require("./routes/groups");
 
 const app = express();
 
+const SESSION_SECRET = process.env.SESSION_SECRET;
+
+if (!SESSION_SECRET) {
+    throw new Error(
+        "SESSION_SECRET is missing. Add it to your backend/.env file."
+    );
+}
+
 app.use(express.json());
 
 app.use(
     session({
-        secret: "development-secret",
+        secret: SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -55,7 +67,7 @@ app.get("/", (req, res) => {
     });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Start the server only when this file is run directly.
 if (require.main === module) {
